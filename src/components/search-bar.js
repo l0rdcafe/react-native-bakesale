@@ -1,16 +1,9 @@
 import React from "react";
-import { TextInput, StyleSheet } from "react-native";
+import { SearchBar } from "react-native-elements";
 import PropTypes from "prop-types";
 import debounce from "lodash.debounce";
 
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    marginHorizontal: 12
-  }
-});
-
-class SearchBar extends React.Component {
+class SearchBarComp extends React.Component {
   static propTypes = { searchDeals: PropTypes.func.isRequired, initialSearchQuery: PropTypes.string.isRequired };
   state = { searchQuery: this.props.initialSearchQuery };
   searchDeals = query => {
@@ -26,11 +19,11 @@ class SearchBar extends React.Component {
   render() {
     const { searchQuery } = this.state;
     return (
-      <TextInput
+      <SearchBar
         ref={node => {
           this.input = node;
         }}
-        style={styles.input}
+        icon={{ type: "font-awesome", name: "search" }}
         placeholder="Search All Deals"
         onChangeText={this.handleChange}
         value={searchQuery}
@@ -39,4 +32,4 @@ class SearchBar extends React.Component {
   }
 }
 
-export default SearchBar;
+export default SearchBarComp;

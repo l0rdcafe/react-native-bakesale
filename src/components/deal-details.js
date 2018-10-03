@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TouchableOpacity,
   PanResponder,
   Animated,
@@ -12,13 +11,16 @@ import {
   Linking,
   ScrollView
 } from "react-native";
+import { Avatar, Divider } from "react-native-elements";
 import PropTypes from "prop-types";
 import { priceDisplay } from "../utils";
 import API from "../ajax";
 
 const styles = StyleSheet.create({
   deal: {
-    marginBottom: 20
+    marginBottom: 20,
+    backgroundColor: "#393e42",
+    height: "100%"
   },
   image: {
     width: "100%",
@@ -28,8 +30,8 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "bold",
-    backgroundColor: "rgba(237, 149, 45, 0.4)",
-    padding: 10
+    padding: 10,
+    color: "#fff"
   },
   footer: {
     flexDirection: "row",
@@ -38,10 +40,12 @@ const styles = StyleSheet.create({
     marginTop: 15
   },
   cause: {
-    marginVertical: 10
+    marginVertical: 10,
+    color: "#fff"
   },
   price: {
-    fontWeight: "bold"
+    fontWeight: "bold",
+    color: "#fff"
   },
   avatar: { width: 60, height: 60, borderRadius: 30 },
   info: { alignItems: "center" },
@@ -49,7 +53,8 @@ const styles = StyleSheet.create({
   description: { borderColor: "#ddd", borderWidth: 1, borderStyle: "dotted", margin: 10, padding: 10 },
   backLink: {
     marginBottom: 5,
-    color: "#22f",
+    padding: 10,
+    color: "#ccc",
     marginLeft: 10
   }
 });
@@ -112,6 +117,7 @@ class DealDetails extends React.Component {
         />
         <View>
           <Text style={styles.title}>{deal.title}</Text>
+          <Divider />
         </View>
         <ScrollView style={styles.detail}>
           <View style={styles.footer}>
@@ -121,15 +127,15 @@ class DealDetails extends React.Component {
             </View>
             {deal.user && (
               <View style={styles.user}>
-                <Image source={{ uri: deal.user.avatar }} style={styles.avatar} />
-                <Text>{deal.user.name}</Text>
+                <Avatar medium rounded source={{ uri: deal.user.avatar }} />
+                <Text style={{ color: "#fff" }}>{deal.user.name}</Text>
               </View>
             )}
           </View>
           <View style={styles.description}>
-            <Text>{deal.description}</Text>
+            <Text style={{ color: "#fff" }}>{deal.description}</Text>
           </View>
-          <Button title="Buy this deal!" onPress={this.openDealUrl} />
+          <Button title="Buy this deal!" color="#ccc" onPress={this.openDealUrl} />
         </ScrollView>
       </View>
     );
